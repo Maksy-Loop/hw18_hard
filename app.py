@@ -3,29 +3,41 @@
 
 # Пример
 
-# from flask import Flask
-# from flask_restx import Api
-#
-# from config import Config
+from flask import Flask
+from flask_restx import Api
+from config import Config
 # from models import Review, Book
-# from setup_db import db
-# from views.books import book_ns
-# from views.reviews import review_ns
-#
+from setup_db import db
+from views.directors import directors_ns
+from views.genres import genres_ns
+
+from views.films import films_ns
+
 # функция создания основного объекта app
-# def create_app(config_object):
-#     app = Flask(__name__)
-#     app.config.from_object(config_object)
-#     register_extensions(app)
-#     return app
-#
-#
+def create_app(config_object):
+     application = Flask(__name__)
+     application.config.from_object(config_object)
+     application.app_context().push()
+     return application
+
+
+
 # функция подключения расширений (Flask-SQLAlchemy, Flask-RESTx, ...)
-# def register_extensions(app):
-#     db.init_app(app)
-#     api = Api(app)
-#     api.add_namespace(...)
-#     create_data(app, db)
+def configure_app(application):
+     db.init_app(application)
+     api = Api(app)
+     api.add_namespace(films_ns)
+     api.add_namespace(directors_ns)
+     api.add_namespace(genres_ns)
+
+ #    create_data(app, db)
+
+
+app_config = Config()
+app = create_app(app_config)
+configure_app(app)
+
+
 #
 #
 # функция
@@ -42,5 +54,6 @@
 # app = create_app(Config())
 # app.debug = True
 #
-# if __name__ == '__main__':
-#     app.run(host="localhost", port=10001, debug=True)
+if __name__ == '__main__':
+     app.run()
+
