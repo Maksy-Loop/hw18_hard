@@ -1,9 +1,14 @@
-# это файл для классов доступа к данным (Data Access Object). Здесь должен быть класс с методами доступа к данным
-# здесь в методах можно построить сложные запросы к БД
+from dao.model.genre import Genre
 
-# Например
+class GenreDAO:
+    def __init__(self, session):
+        self.session = session
 
-# class BookDAO:
-#     def get_all_books(self):
-#         books = Book.query.all()
-#         return
+    def get_all(self):
+
+        return self.session.query(Genre).all()
+
+
+    def get_one(self, id):
+        return self.session.query(Genre).get(id)
+

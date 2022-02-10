@@ -1,5 +1,5 @@
 from flask_restx import Resource, Namespace
-from flask import Flask, make_response, jsonify, request
+from flask import make_response, jsonify
 
 from dao.model.movie import MovieSchema
 from implemented import movie_service

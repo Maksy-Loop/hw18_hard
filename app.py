@@ -29,30 +29,11 @@ def configure_app(application):
      api.add_namespace(directors_ns)
      api.add_namespace(genres_ns)
 
- #    create_data(app, db)
-
 
 app_config = Config()
 app = create_app(app_config)
 configure_app(app)
 
 
-#
-#
-# функция
-# def create_data(app, db):
-#     with app.app_context():
-#         db.create_all()
-#
-#         создать несколько сущностей чтобы добавить их в БД
-#
-#         with db.session.begin():
-#             db.session.add_all(здесь список созданных объектов)
-#
-#
-# app = create_app(Config())
-# app.debug = True
-#
 if __name__ == '__main__':
      app.run()
-
