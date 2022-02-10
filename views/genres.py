@@ -15,7 +15,7 @@ class GenresView(Resource):
         return make_response(jsonify(genres_schema.dump(all_genres)), 200)
 
 
-@genres_ns.route('/')
+@genres_ns.route('/<int:id>')
 class GenreView(Resource):
     def get(self, id: int):
         genre = genre_service.get_one(id)

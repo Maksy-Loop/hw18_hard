@@ -9,7 +9,6 @@ from config import Config
 from setup_db import db
 from views.directors import directors_ns
 from views.genres import genres_ns
-
 from views.films import films_ns
 
 # функция создания основного объекта app
@@ -18,7 +17,6 @@ def create_app(config_object):
      application.config.from_object(config_object)
      application.app_context().push()
      return application
-
 
 
 # функция подключения расширений (Flask-SQLAlchemy, Flask-RESTx, ...)
